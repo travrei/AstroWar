@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://vmsetv08fpwy"]
+
+[ext_resource type="Script" uid="uid://dcq1upe5d548u" path="res://scripts/ambient/upgrade.gd" id="1_opkoy"]
+[ext_resource type="Texture2D" uid="uid://bkwieb5ryns51" path="res://assets/Upgrade.png" id="1_vpqwn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_opkoy"]
+size = Vector2(12, 10)
+
+[node name="Upgrade" type="Area2D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_opkoy")
+
+[node name="Upgrade" type="Sprite2D" parent="."]
+texture = ExtResource("1_vpqwn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_opkoy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

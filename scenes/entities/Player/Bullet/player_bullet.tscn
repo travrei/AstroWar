@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://gmtwyodofyt0"]
+
+[ext_resource type="Script" uid="uid://sdix6wt4t5r6" path="res://scripts/entities/player/player_bullet.gd" id="1_dl5jj"]
+[ext_resource type="Shape2D" uid="uid://csiv50r1w0hra" path="res://scenes/entities/Player/Bullet/bullet2.tres" id="2_cv3ix"]
+[ext_resource type="Texture2D" uid="uid://0m2cs8nahtcn" path="res://assets/Player/Bullet.png" id="3_k2kbs"]
+[ext_resource type="Texture2D" uid="uid://byiniu8465t5y" path="res://assets/Player/Bulletlast.png" id="4_mwkrc"]
+
+[node name="PlayerBullet" type="Area2D"]
+collision_layer = 16
+collision_mask = 5
+script = ExtResource("1_dl5jj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = ExtResource("2_cv3ix")
+
+[node name="Bullet1" type="Sprite2D" parent="."]
+texture = ExtResource("3_k2kbs")
+
+[node name="Bullet2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-4, 3)
+texture = ExtResource("3_k2kbs")
+
+[node name="Bullet3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(4, 3)
+texture = ExtResource("3_k2kbs")
+
+[node name="Bulletlast" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-4, 1)
+texture = ExtResource("4_mwkrc")
+
+[node name="Bulletlast2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(4, 1)
+texture = ExtResource("4_mwkrc")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-4, -2, 8, 6)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_exit_screen"]

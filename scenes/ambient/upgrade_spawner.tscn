@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://7j0pk4ixol74"]
+
+[ext_resource type="Script" uid="uid://p2e6dtsgsusr" path="res://scripts/ambient/upgrade_spawner.gd" id="1_war0u"]
+[ext_resource type="PackedScene" uid="uid://vmsetv08fpwy" path="res://scenes/ambient/upgrade.tscn" id="2_5eife"]
+
+[node name="UpgradeSpawner" type="Marker2D"]
+script = ExtResource("1_war0u")
+upgrade_scene = ExtResource("2_5eife")

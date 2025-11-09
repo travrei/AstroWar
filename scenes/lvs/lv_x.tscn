@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsli8exvo67kg"]
+
+[ext_resource type="Texture2D" uid="uid://dkj1vgb3n5bp4" path="res://assets/TileSet/TileSet.png" id="1_ed48k"]
+[ext_resource type="PackedScene" uid="uid://bppltxgmuou87" path="res://scenes/entities/Player/player.tscn" id="1_rw1wj"]
+[ext_resource type="Script" uid="uid://dpdsic8lcq8wp" path="res://scenes/lvs/map.gd" id="2_nlvjb"]
+[ext_resource type="PackedScene" uid="uid://7j0pk4ixol74" path="res://scenes/ambient/upgrade_spawner.tscn" id="3_nlvjb"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0g1n2"]
+texture = ExtResource("1_ed48k")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_nlvjb"]
+sources/1 = SubResource("TileSetAtlasSource_0g1n2")
+
+[node name="LV X" type="Node2D"]
+
+[node name="UpgradeSpawner" parent="." instance=ExtResource("3_nlvjb")]
+position = Vector2(171, 0)
+
+[node name="Map" type="Node2D" parent="."]
+script = ExtResource("2_nlvjb")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Map"]
+tile_set = SubResource("TileSet_nlvjb")
+
+[node name="Blocks" type="Node2D" parent="Map"]
+
+[node name="Paths" type="Node2D" parent="Map"]
+
+[node name="Enemies" type="Node2D" parent="Map"]
+
+[node name="Player" parent="." instance=ExtResource("1_rw1wj")]
+position = Vector2(171, 185)
+speed = 2500.0

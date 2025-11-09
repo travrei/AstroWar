@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxcm4fp4d6eey"]
+
+[ext_resource type="FontFile" uid="uid://b1i5vpmfn2fv2" path="res://assets/Fonts/dogicapixel.otf" id="1_dnnhc"]
+[ext_resource type="Script" uid="uid://buguwer03t7bu" path="res://scripts/effects/score_indicator.gd" id="1_hnu4r"]
+
+[node name="ScoreIndicator" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_hnu4r")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 3.0
+offset_bottom = 4.0
+theme_override_fonts/font = ExtResource("1_dnnhc")
+theme_override_font_sizes/font_size = 16
+text = "0"

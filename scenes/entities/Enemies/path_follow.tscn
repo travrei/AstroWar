@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyx8hqj76c3g3"]
+
+[ext_resource type="Script" uid="uid://c7lwaa88hhgyq" path="res://scripts/entities/Enemies/path_follow.gd" id="1_r10tr"]
+[ext_resource type="Texture2D" uid="uid://bfqilthny2y48" path="res://assets/Enemys/Enemy_1.png" id="2_qxu5c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lv1jv"]
+size = Vector2(7, 6)
+
+[node name="PathFollow" type="PathFollow2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_r10tr")
+
+[node name="HitArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_lv1jv")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+rotation = -1.5707964
+texture = ExtResource("2_qxu5c")
+
+[connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_area_entered"]
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
