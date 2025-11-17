@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dsli8exvo67kg"]
+[gd_scene load_steps=9 format=3 uid="uid://dsli8exvo67kg"]
 
 [ext_resource type="Texture2D" uid="uid://dkj1vgb3n5bp4" path="res://assets/TileSet/TileSet.png" id="1_ed48k"]
 [ext_resource type="PackedScene" uid="uid://bppltxgmuou87" path="res://scenes/entities/Player/player.tscn" id="1_rw1wj"]
 [ext_resource type="Script" uid="uid://dpdsic8lcq8wp" path="res://scenes/lvs/map.gd" id="2_nlvjb"]
 [ext_resource type="PackedScene" uid="uid://7j0pk4ixol74" path="res://scenes/ambient/upgrade_spawner.tscn" id="3_nlvjb"]
+[ext_resource type="PackedScene" uid="uid://b5s0cxndmcv0c" path="res://scenes/entities/Player/assistent.tscn" id="5_iekdc"]
+[ext_resource type="PackedScene" uid="uid://4t4ad7dbaau5" path="res://scenes/entities/Enemies/suicide_enemy.tscn" id="6_iekdc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0g1n2"]
 texture = ExtResource("1_ed48k")
@@ -48,3 +50,6 @@ tile_set = SubResource("TileSet_nlvjb")
 [node name="Player" parent="." instance=ExtResource("1_rw1wj")]
 position = Vector2(171, 185)
 speed = 2500.0
+assistent_scene = ExtResource("5_iekdc")
+
+[node name="Suicide Enemy" parent="." instance=ExtResource("6_iekdc")]

@@ -29,6 +29,10 @@ window/stretch/scale_mode="integer"
 
 project/assembly_name="AstroWar"
 
+[global_group]
+
+Player="Player "
+
 [input]
 
 Up={
@@ -75,6 +79,7 @@ Shoot={
 2d_physics/layer_4="EnBullets"
 2d_physics/layer_5="PBullets"
 2d_physics/layer_6="Upgrades"
+2d_physics/layer_7="EnemyDetect"
 
 [rendering]
 
