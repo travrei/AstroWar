@@ -4,6 +4,7 @@ extends Enemies
 @export var speed: int = 20
 @export_category("Nodes")
 @export var animatesprite: AnimatedSprite2D = AnimatedSprite2D.new()
+@export var explosion_fx: AudioStreamPlayer2D
 
 var direction: Vector2 = Vector2.ZERO
 
@@ -23,6 +24,8 @@ func _on_body_entered(body: Node2D) -> void:
 	body.death()
 
 func _on_area_entered(_area: Area2D) -> void:
+	if !is_dead:
+		explosion_fx.play()
 	death()
 	animatesprite.animation = "explosion"
 

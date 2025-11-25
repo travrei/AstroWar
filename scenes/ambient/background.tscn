@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8xup5073kwqk"]
+
+[ext_resource type="Texture2D" uid="uid://b53prsa06upua" path="res://assets/star.png" id="1_jxkld"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cs758"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(171, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.99999994
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jxkld"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(171, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+flatness = 1.0
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.29999998
+scale_max = 0.5
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.99999994
+
+[node name="Background" type="Node2D"]
+position = Vector2(171, -8)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(342, 192)
+offset_left = -171.0
+offset_top = 8.0
+offset_right = 171.0
+offset_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 1)
+
+[node name="StarsForeground" type="GPUParticles2D" parent="."]
+position = Vector2(2, -7)
+amount = 50
+texture = ExtResource("1_jxkld")
+lifetime = 10.0
+preprocess = 10.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_cs758")
+
+[node name="Starsback" type="GPUParticles2D" parent="."]
+position = Vector2(2, -7)
+amount = 400
+texture = ExtResource("1_jxkld")
+lifetime = 23.0
+preprocess = 23.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_jxkld")

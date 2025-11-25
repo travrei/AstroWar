@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://bhykvsis8qd56"]
+[gd_scene load_steps=20 format=3 uid="uid://bhykvsis8qd56"]
 
 [ext_resource type="Script" uid="uid://cu15t68uoif0l" path="res://scripts/ambient/block.gd" id="1_gr53s"]
 [ext_resource type="Texture2D" uid="uid://dkj1vgb3n5bp4" path="res://assets/TileSet/TileSet.png" id="2_qtmvq"]
 [ext_resource type="Texture2D" uid="uid://dpb6y3o0lgeos" path="res://assets/explosion.png" id="2_qy772"]
+[ext_resource type="AudioStream" uid="uid://ml6a30atl14p" path="res://assets/Audio/Fx/exploblock.wav" id="4_qy772"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_71s6j"]
 atlas = ExtResource("2_qy772")
@@ -124,9 +125,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ox3i0"]
 size = Vector2(16, 16)
 
-[node name="Block" type="Area2D"]
+[node name="Block" type="Area2D" node_paths=PackedStringArray("explo_sound")]
 collision_mask = 16
 script = ExtResource("1_gr53s")
+explo_sound = NodePath("Exploblock")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_71s6j")
@@ -135,6 +137,9 @@ autoplay = "explosion"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ox3i0")
+
+[node name="Exploblock" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_qy772")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]

@@ -3,12 +3,16 @@ extends PathFollow2D
 @export_category("PathFollowEnemy Properties")
 @export var score_giver: int = 1
 @export var speed: float = 0.002
+@export_category("Nodes")
 @export var animationsprite: AnimatedSprite2D = AnimatedSprite2D.new()
+@export var explosion_fx: AudioStreamPlayer2D
 
 const SCOREINDICATOR = preload("uid://bxcm4fp4d6eey")
+var is_dead: bool = false
 
 func _process(delta: float) -> void:
-	progress_ratio += speed
+	if !is_dead:
+		progress_ratio += speed
 
 func display_score():
 	var score_indicator = SCOREINDICATOR.instantiate()
@@ -20,6 +24,9 @@ func _on_hit_area_body_entered(body: Node2D) -> void:
 	body.death()
 
 func _on_hit_area_area_entered(area: Area2D) -> void:
+	if !is_dead:
+		explosion_fx.play()
+	is_dead = true
 	display_score()
 	set_deferred("monitorable", false)
 	set_deferred("monitoring", false)

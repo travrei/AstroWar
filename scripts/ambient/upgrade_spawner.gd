@@ -2,13 +2,18 @@ extends Marker2D
 
 @export_category("SpawnerUpgrade Properties")
 @export var upgrade_scene: PackedScene = PackedScene.new()
+@export var next_spawn_target: int = 20
 
+func _ready() -> void:
+	Global.score_updated.connect(check_spawn)
 
-func _ready():
-	Global.score_updated.connect(spawn_upgrade)
+func check_spawn(current_score: int) -> void:
+	while current_score >= next_spawn_target:
+		spawn_upgrade()
 
-func spawn_upgrade(score):
-	if score > 0 && score % 20 == 0:
-		var upgrade_obj = upgrade_scene.instantiate()
-		upgrade_obj.position = global_position
-		get_tree().root.add_child(upgrade_obj)
+		next_spawn_target += 20
+
+func spawn_upgrade() -> void:
+	var upgrade_obj = upgrade_scene.instantiate()
+	upgrade_obj.position = global_position
+	get_tree().root.add_child(upgrade_obj)

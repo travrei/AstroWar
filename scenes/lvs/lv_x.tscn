@@ -1,11 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://dsli8exvo67kg"]
+[gd_scene load_steps=15 format=3 uid="uid://dsli8exvo67kg"]
 
+[ext_resource type="PackedScene" uid="uid://c8xup5073kwqk" path="res://scenes/ambient/background.tscn" id="1_5agdd"]
 [ext_resource type="Texture2D" uid="uid://dkj1vgb3n5bp4" path="res://assets/TileSet/TileSet.png" id="1_ed48k"]
 [ext_resource type="PackedScene" uid="uid://bppltxgmuou87" path="res://scenes/entities/Player/player.tscn" id="1_rw1wj"]
-[ext_resource type="Script" uid="uid://dpdsic8lcq8wp" path="res://scenes/lvs/map.gd" id="2_nlvjb"]
+[ext_resource type="Script" uid="uid://dpdsic8lcq8wp" path="res://scripts/ambient/map.gd" id="2_iekdc"]
 [ext_resource type="PackedScene" uid="uid://7j0pk4ixol74" path="res://scenes/ambient/upgrade_spawner.tscn" id="3_nlvjb"]
-[ext_resource type="PackedScene" uid="uid://b5s0cxndmcv0c" path="res://scenes/entities/Player/assistent.tscn" id="5_iekdc"]
-[ext_resource type="PackedScene" uid="uid://4t4ad7dbaau5" path="res://scenes/entities/Enemies/suicide_enemy.tscn" id="6_iekdc"]
+[ext_resource type="PackedScene" uid="uid://w5ijo86q27k" path="res://scenes/entities/Bosses/FirstBoss/fist_boss.tscn" id="5_axxcs"]
+[ext_resource type="Script" uid="uid://c64gsf56sr2nw" path="res://scripts/ambient/boss_spawn_area.gd" id="6_iekdc"]
+[ext_resource type="Script" uid="uid://d38jnydtnbpxq" path="res://scripts/ambient/suicide_spawn_area.gd" id="7_5agdd"]
+[ext_resource type="PackedScene" uid="uid://4t4ad7dbaau5" path="res://scenes/entities/Enemies/suicide_enemy.tscn" id="8_gnsps"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0g1n2"]
 texture = ExtResource("1_ed48k")
@@ -30,13 +33,25 @@ texture = ExtResource("1_ed48k")
 [sub_resource type="TileSet" id="TileSet_nlvjb"]
 sources/1 = SubResource("TileSetAtlasSource_0g1n2")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4kra6"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iekdc"]
+distance = -192.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_axxcs"]
+normal = Vector2(-1, 0)
+distance = -344.0
+
 [node name="LV X" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_5agdd")]
 
 [node name="UpgradeSpawner" parent="." instance=ExtResource("3_nlvjb")]
 position = Vector2(171, 0)
 
 [node name="Map" type="Node2D" parent="."]
-script = ExtResource("2_nlvjb")
+script = ExtResource("2_iekdc")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Map"]
 tile_set = SubResource("TileSet_nlvjb")
@@ -47,9 +62,36 @@ tile_set = SubResource("TileSet_nlvjb")
 
 [node name="Enemies" type="Node2D" parent="Map"]
 
-[node name="Player" parent="." instance=ExtResource("1_rw1wj")]
-position = Vector2(171, 185)
-speed = 2500.0
-assistent_scene = ExtResource("5_iekdc")
+[node name="BossSpawnArea" type="Area2D" parent="Map" node_paths=PackedStringArray("map")]
+collision_mask = 2
+script = ExtResource("6_iekdc")
+boss_scene = ExtResource("5_axxcs")
+map = NodePath("..")
 
-[node name="Suicide Enemy" parent="." instance=ExtResource("6_iekdc")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/BossSpawnArea"]
+position = Vector2(167, 0)
+
+[node name="SuicideSpawnArea" type="Area2D" parent="Map"]
+collision_mask = 2
+script = ExtResource("7_5agdd")
+suicide_scene = ExtResource("8_gnsps")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/SuicideSpawnArea"]
+position = Vector2(167, 0)
+
+[node name="ScreenBorders" type="StaticBody2D" parent="."]
+
+[node name="LeftWall" type="CollisionShape2D" parent="ScreenBorders"]
+shape = SubResource("WorldBoundaryShape2D_4kra6")
+
+[node name="BottomWall" type="CollisionShape2D" parent="ScreenBorders"]
+shape = SubResource("WorldBoundaryShape2D_iekdc")
+
+[node name="RightWall" type="CollisionShape2D" parent="ScreenBorders"]
+shape = SubResource("WorldBoundaryShape2D_axxcs")
+
+[node name="Player" parent="." instance=ExtResource("1_rw1wj")]
+position = Vector2(184, 168)
+player_lv = 0
+
+[connection signal="body_entered" from="Map/BossSpawnArea" to="Map/BossSpawnArea" method="_on_body_entered"]

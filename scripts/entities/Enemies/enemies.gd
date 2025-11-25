@@ -3,6 +3,7 @@ extends Area2D
 class_name Enemies
 
 const SCOREINDICATOR = preload("uid://bxcm4fp4d6eey")
+const EXPLOSIONDEATH: AudioStreamWAV = preload("uid://4co4oi46xjkk")
 
 @export_category("Enemy Variables")
 @export var score_giver: int = 1

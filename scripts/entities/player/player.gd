@@ -5,28 +5,39 @@ class_name Player
 #Imports
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var shooting_marker: Marker2D = $ShootingMarker
+@onready var collision: CollisionShape2D = $CollisionShape2D
 
 #Variables
 @export_category("Player Properties")
 @export var player_lv = PlayerLevel.Level.LV0
 @export var speed = 300.0
+@export_category("Nodes")
 @export var bullet_scene: PackedScene = PackedScene.new()
 @export var assistent_scene: PackedScene = PackedScene.new()
+@export_category("Sounds")
+@export var shooting_sound: AudioStreamPlayer2D
+@export var shooting_sound_lv3: AudioStreamPlayer2D
+@export var upgrade_sound: AudioStreamPlayer2D
+@export var death_sound: AudioStreamPlayer2D
 
 var is_dead: bool = false
+var in_cutscene: bool = false
 var upgrade: int = 0
 var direction: Vector2 = Vector2.ZERO
 var numb_of_assistent = 0
 
 func _physics_process(delta: float) -> void:
-	if !is_dead:
+	if !is_dead and !in_cutscene:
 		moviment(delta)
 		change_player_sprite()
 
 		if Input.is_action_just_pressed("Shoot"):
 			shoot()
-
-	#print(Global.player_score)
+			match_shoot_sound()
+	else:
+		death_sound.pitch_scale -= 0.001
+		if death_sound.pitch_scale <= 0.50:
+			death_sound.pitch_scale = 0.50
 
 func moviment(delta: float) -> void:
 	direction.x = Input.get_axis("Left", "Right")
@@ -45,6 +56,15 @@ func shoot() -> void:
 	bullet.position = shooting_marker.global_position
 	get_tree().root.add_child(bullet)
 
+func match_shoot_sound() -> void:
+	match player_lv:
+		PlayerLevel.Level.LV0:
+			shooting_sound.play()
+		PlayerLevel.Level.LV1:
+			shooting_sound.play()
+		PlayerLevel.Level.LV2:
+			shooting_sound_lv3.play()
+
 func change_player_sprite() -> void:
 	match player_lv:
 		PlayerLevel.Level.LV0:
@@ -55,17 +75,19 @@ func change_player_sprite() -> void:
 			sprite.animation = "LV2"
 
 func death() -> void:
-	is_dead = true
 	sprite.animation = "explosion"
-
+	if !is_dead:
+		death_sound.play()
+	is_dead = true
 
 func _on_sprite_animation_finished() -> void:
 	if is_dead:
 		print("Game OVER!")
+		death_sound.stop()
 
-func upgrade_up_one():
+func upgrade_up_one() -> void:
 	upgrade += 1
-
+	upgrade_sound.play()
 	match upgrade:
 		2: player_lv = PlayerLevel.Level.LV1
 		4: player_lv = PlayerLevel.Level.LV2
@@ -73,10 +95,26 @@ func upgrade_up_one():
 		8: spawn_assistent()
 		_: return
 
-func spawn_assistent():
+func spawn_assistent() -> void:
 	numb_of_assistent += 1
 	var assistent = assistent_scene.instantiate()
 	assistent.player_to_follow = self
 	assistent.global_position = self.global_position
 	assistent.fixed_distance = assistent.fixed_distance * numb_of_assistent
 	get_parent().add_child(assistent)
+
+func victory_routine() -> void:
+	in_cutscene = true
+	velocity = Vector2.ZERO
+	collision.set_deferred("disabled", true)
+
+	var center_pos = get_viewport_rect().size / 2
+	var t1 = create_tween()
+	t1.parallel().tween_property(self, "global_position:x", center_pos.x, 1.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	t1.parallel().tween_property(self, "global_position:y", 192, 1.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+	await t1.finished
+
+	var t2 = create_tween()
+	t2.parallel().tween_property(self, "global_position:y", -200, 0.5).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+	t2.parallel().tween_property(self, "scale", Vector2(0.5, 3.0), 0.5)

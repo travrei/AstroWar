@@ -1,11 +1,16 @@
-[gd_scene load_steps=31 format=3 uid="uid://bppltxgmuou87"]
+[gd_scene load_steps=36 format=3 uid="uid://bppltxgmuou87"]
 
 [ext_resource type="Texture2D" uid="uid://d7jnsqclogcw" path="res://assets/Player/player.png" id="1_ewbqj"]
 [ext_resource type="Script" uid="uid://vbr4ab5lhg0l" path="res://scripts/entities/player/player.gd" id="1_i5r0j"]
 [ext_resource type="Texture2D" uid="uid://71sxgjniv4eo" path="res://assets/Player/first_upgrade.png" id="2_i5r0j"]
 [ext_resource type="PackedScene" uid="uid://gmtwyodofyt0" path="res://scenes/entities/Player/Bullet/player_bullet.tscn" id="2_txxmm"]
+[ext_resource type="PackedScene" uid="uid://b5s0cxndmcv0c" path="res://scenes/entities/Player/assistent.tscn" id="3_o8fb4"]
 [ext_resource type="Texture2D" uid="uid://bsslqfn8nnos4" path="res://assets/Player/last_upgrade.png" id="3_txxmm"]
 [ext_resource type="Texture2D" uid="uid://dpb6y3o0lgeos" path="res://assets/explosion.png" id="6_a7m52"]
+[ext_resource type="AudioStream" uid="uid://cdit7l4glvkul" path="res://assets/Audio/Fx/expplayer.wav" id="8_ti5ly"]
+[ext_resource type="AudioStream" uid="uid://2prn3srww1gq" path="res://assets/Audio/Fx/Shoot6.wav" id="8_tihqr"]
+[ext_resource type="AudioStream" uid="uid://b868y1ev3u757" path="res://assets/Audio/Fx/Laser_Shoot7.wav" id="9_2x42r"]
+[ext_resource type="AudioStream" uid="uid://c720rlirnltif" path="res://assets/Audio/Fx/PowerUp.wav" id="10_n8q02"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a7m52"]
 atlas = ExtResource("1_ewbqj")
@@ -190,11 +195,18 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_te6nc"]
 size = Vector2(12, 13)
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("shooting_sound", "shooting_sound_lv3", "upgrade_sound", "death_sound") groups=["Player"]]
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_i5r0j")
+player_lv = 1
+speed = 2500.0
 bullet_scene = ExtResource("2_txxmm")
+assistent_scene = ExtResource("3_o8fb4")
+shooting_sound = NodePath("SoundFx/ShootLv1")
+shooting_sound_lv3 = NodePath("SoundFx/ShootLv3")
+upgrade_sound = NodePath("SoundFx/PowerUp")
+death_sound = NodePath("SoundFx/Expplayer")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jqa5o")
@@ -208,5 +220,19 @@ shape = SubResource("RectangleShape2D_te6nc")
 
 [node name="ShootingMarker" type="Marker2D" parent="."]
 position = Vector2(0, -6)
+
+[node name="SoundFx" type="Node" parent="."]
+
+[node name="Expplayer" type="AudioStreamPlayer2D" parent="SoundFx"]
+stream = ExtResource("8_ti5ly")
+
+[node name="ShootLv1" type="AudioStreamPlayer2D" parent="SoundFx"]
+stream = ExtResource("8_tihqr")
+
+[node name="ShootLv3" type="AudioStreamPlayer2D" parent="SoundFx"]
+stream = ExtResource("9_2x42r")
+
+[node name="PowerUp" type="AudioStreamPlayer2D" parent="SoundFx"]
+stream = ExtResource("10_n8q02")
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]

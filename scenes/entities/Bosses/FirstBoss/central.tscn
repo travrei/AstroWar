@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://ceh3cdovror65"]
+
+[ext_resource type="Texture2D" uid="uid://qmndxm7guujt" path="res://assets/FBoss/Turret_boss1.png" id="1_88tw8"]
+[ext_resource type="Script" uid="uid://5fe1c3wv4wpp" path="res://scripts/entities/bosses/firstboss/central.gd" id="1_g4mwo"]
+[ext_resource type="PackedScene" uid="uid://djntvjw0fn87f" path="res://scenes/entities/Enemies/enemy_bullet.tscn" id="2_isrhb"]
+[ext_resource type="AudioStream" uid="uid://b66bjp4ype58q" path="res://assets/Audio/Fx/torrentbosshit.wav" id="4_levi4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4mwo"]
+size = Vector2(8, 8)
+
+[node name="Central" type="Area2D" node_paths=PackedStringArray("shoot_timer", "hit_sound")]
+scale = Vector2(1.2, 1.2)
+collision_layer = 4
+collision_mask = 18
+script = ExtResource("1_g4mwo")
+bullet_scene = ExtResource("2_isrhb")
+shoot_timer = NodePath("Shoot")
+hit_sound = NodePath("Torrentbosshit")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("1_88tw8")
+region_enabled = true
+region_rect = Rect2(12, 7, 8, 7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.2, 1.2)
+shape = SubResource("RectangleShape2D_g4mwo")
+
+[node name="Shoot" type="Timer" parent="."]
+one_shot = true
+
+[node name="Torrentbosshit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_levi4")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Shoot" to="." method="spawn_bullets"]

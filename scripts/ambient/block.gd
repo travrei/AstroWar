@@ -6,7 +6,10 @@ const blocks: Array = ["quadrado", "trapezio", "tetrino"]
 const SCOREINDICATOR = preload("uid://bxcm4fp4d6eey")
 
 @export var score_giver: int = 5
+@export var explo_sound: AudioStreamPlayer2D
+
 var is_exploded: bool = false
+
 func _ready() -> void:
 	var animation = blocks.pick_random()
 
@@ -15,6 +18,8 @@ func _ready() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	set_deferred("monitorable", false)
 	set_deferred("monitoring", false)
+	if !is_exploded:
+		explo_sound.play()
 	is_exploded = true
 	sprite.animation = "explosion"
 

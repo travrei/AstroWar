@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://4t4ad7dbaau5"]
+[gd_scene load_steps=18 format=3 uid="uid://4t4ad7dbaau5"]
 
 [ext_resource type="Script" uid="uid://drorcdbvthd6u" path="res://scripts/entities/Enemies/suicide_enemy.gd" id="1_j63ue"]
 [ext_resource type="Texture2D" uid="uid://chdytcc13xyqu" path="res://assets/Enemys/Enemy_2.png" id="2_qf04l"]
 [ext_resource type="Texture2D" uid="uid://dpb6y3o0lgeos" path="res://assets/explosion.png" id="3_y2mgn"]
+[ext_resource type="AudioStream" uid="uid://4co4oi46xjkk" path="res://assets/Audio/Fx/enemy.wav" id="4_5lqmq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y2mgn"]
 atlas = ExtResource("2_qf04l")
@@ -100,12 +101,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qf04l"]
 size = Vector2(12, 13)
 
-[node name="Suicide Enemy" type="Area2D" node_paths=PackedStringArray("animatesprite")]
+[node name="Suicide Enemy" type="Area2D" node_paths=PackedStringArray("animatesprite", "explosion_fx")]
 collision_layer = 4
 collision_mask = 18
 script = ExtResource("1_j63ue")
 attack_speed = 200.0
 animatesprite = NodePath("AnimatedSprite2D")
+explosion_fx = NodePath("Enemy")
 metadata/_custom_type_script = "uid://b7ykwp10iaujb"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -116,6 +118,10 @@ autoplay = "default"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_qf04l")
+
+[node name="Enemy" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, 2)
+stream = ExtResource("4_5lqmq")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://pmeqtrwqyag2"]
+[gd_scene load_steps=25 format=3 uid="uid://pmeqtrwqyag2"]
 
 [ext_resource type="Script" uid="uid://dv23ylirxdgl1" path="res://scripts/entities/Enemies/gelly_enemy.gd" id="1_lgpdf"]
 [ext_resource type="Texture2D" uid="uid://dme3enmohk7ea" path="res://assets/Enemys/gelly_enemy.png" id="2_ytbmr"]
 [ext_resource type="Texture2D" uid="uid://dpb6y3o0lgeos" path="res://assets/explosion.png" id="3_k7duo"]
+[ext_resource type="AudioStream" uid="uid://4co4oi46xjkk" path="res://assets/Audio/Fx/enemy.wav" id="4_0b3k2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k7duo"]
 atlas = ExtResource("2_ytbmr")
@@ -149,12 +150,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ytbmr"]
 size = Vector2(14, 14)
 
-[node name="GellyEnemy" type="Area2D" node_paths=PackedStringArray("animatesprite")]
+[node name="GellyEnemy" type="Area2D" node_paths=PackedStringArray("animatesprite", "explosion_fx")]
 collision_layer = 4
 collision_mask = 18
 script = ExtResource("1_lgpdf")
 speed = 30
 animatesprite = NodePath("AnimatedSprite2D")
+explosion_fx = NodePath("Enemy")
 metadata/_custom_type_script = "uid://b7ykwp10iaujb"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -166,6 +168,9 @@ frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ytbmr")
+
+[node name="Enemy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_0b3k2")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

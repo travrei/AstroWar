@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://w5ijo86q27k"]
+
+[ext_resource type="Texture2D" uid="uid://jqi8mcaohgs7" path="res://assets/FBoss/F_Boss.png" id="1_b8x5p"]
+[ext_resource type="Script" uid="uid://eap4sqbe361r" path="res://scripts/entities/bosses/firstboss/fist_boss.gd" id="1_km0dd"]
+[ext_resource type="PackedScene" uid="uid://bu0dbveb7fm0j" path="res://scenes/entities/Bosses/FirstBoss/Torrent.tscn" id="2_3hi8e"]
+[ext_resource type="PackedScene" uid="uid://ceh3cdovror65" path="res://scenes/entities/Bosses/FirstBoss/central.tscn" id="4_u8xkv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hi8e"]
+atlas = ExtResource("1_b8x5p")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_km0dd"]
+atlas = ExtResource("1_b8x5p")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8xkv"]
+atlas = ExtResource("1_b8x5p")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1005y"]
+atlas = ExtResource("1_b8x5p")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6h2e8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hi8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_km0dd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8xkv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1005y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="Fist Boss" type="Area2D" node_paths=PackedStringArray("central")]
+script = ExtResource("1_km0dd")
+central = NodePath("Central")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6h2e8")
+frame_progress = 0.41233474
+
+[node name="Boss Torrent" parent="." groups=["boss_turrets"] instance=ExtResource("2_3hi8e")]
+position = Vector2(-8, 10)
+scale = Vector2(1.6, 1.6)
+
+[node name="Boss Torrent2" parent="." groups=["boss_turrets"] instance=ExtResource("2_3hi8e")]
+position = Vector2(6.999999, 10)
+scale = Vector2(-1.6, 1.6)
+
+[node name="Boss Torrent3" parent="." groups=["boss_turrets"] instance=ExtResource("2_3hi8e")]
+position = Vector2(11, -1.999999)
+scale = Vector2(-1.6, 1.6)
+
+[node name="Boss Torrent4" parent="." groups=["boss_turrets"] instance=ExtResource("2_3hi8e")]
+position = Vector2(-13, -2)
+scale = Vector2(1.6, 1.6)
+
+[node name="Central" parent="." instance=ExtResource("4_u8xkv")]
+position = Vector2(0, -6)
+monitoring = false
+monitorable = false
+
+[connection signal="turret_died" from="Boss Torrent" to="." method="_on_boss_torrent_turret_died"]
+[connection signal="turret_died" from="Boss Torrent2" to="." method="_on_boss_torrent_turret_died"]
+[connection signal="turret_died" from="Boss Torrent3" to="." method="_on_boss_torrent_turret_died"]
+[connection signal="turret_died" from="Boss Torrent4" to="." method="_on_boss_torrent_turret_died"]
+[connection signal="central_died" from="Central" to="." method="_on_central_central_died"]

@@ -7,7 +7,7 @@ extends Enemies
 
 @export_category("Properties")
 @export var time_to_leave: float = 1.5
-
+@export var explosion_fx: AudioStreamPlayer2D
 
 var target_player = null
 
@@ -20,7 +20,7 @@ func shoot_at_player() -> void:
 		return
 
 	var bullet = bullet_scene.instantiate()
-	bullet.position = global_position
+	bullet.position = position
 
 	var direction: Vector2 = (target_player.global_position - global_position).normalized()
 
@@ -40,6 +40,8 @@ func _on_body_entered(body: Node2D) -> void:
 	body.death()
 
 func _on_area_entered(_area: Area2D) -> void:
+	if !is_dead:
+		explosion_fx.play()
 	death()
 	animatedsprite.animation = "explosion"
 

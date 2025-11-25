@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://bg6blujx1o6a"]
+[gd_scene load_steps=19 format=3 uid="uid://bg6blujx1o6a"]
 
 [ext_resource type="Texture2D" uid="uid://cd2avdp1l2qrf" path="res://assets/Enemys/cross_enemy.png" id="1_5ad64"]
 [ext_resource type="Script" uid="uid://b8jo36lw1wmst" path="res://scripts/entities/Enemies/sin_enemy.gd" id="1_wrcsw"]
 [ext_resource type="Texture2D" uid="uid://dpb6y3o0lgeos" path="res://assets/explosion.png" id="2_eq1co"]
+[ext_resource type="AudioStream" uid="uid://4co4oi46xjkk" path="res://assets/Audio/Fx/enemy.wav" id="4_trg6h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eq1co"]
 atlas = ExtResource("1_5ad64")
@@ -107,19 +108,22 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrcsw"]
 size = Vector2(16, 16)
 
-[node name="SinEnemy" type="Area2D" node_paths=PackedStringArray("animatesprite")]
+[node name="SinEnemy" type="Area2D" node_paths=PackedStringArray("animatesprite", "explosion_fx")]
 collision_layer = 4
 collision_mask = 18
 script = ExtResource("1_wrcsw")
 animatesprite = NodePath("AnimatedSprite2D")
+explosion_fx = NodePath("Enemy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_sq2sk")
-animation = &"explosion"
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wrcsw")
+
+[node name="Enemy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_trg6h")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
