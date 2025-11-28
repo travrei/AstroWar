@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dsli8exvo67kg"]
+[gd_scene load_steps=16 format=3 uid="uid://dsli8exvo67kg"]
 
 [ext_resource type="PackedScene" uid="uid://c8xup5073kwqk" path="res://scenes/ambient/background.tscn" id="1_5agdd"]
 [ext_resource type="Texture2D" uid="uid://dkj1vgb3n5bp4" path="res://assets/TileSet/TileSet.png" id="1_ed48k"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://c64gsf56sr2nw" path="res://scripts/ambient/boss_spawn_area.gd" id="6_iekdc"]
 [ext_resource type="Script" uid="uid://d38jnydtnbpxq" path="res://scripts/ambient/suicide_spawn_area.gd" id="7_5agdd"]
 [ext_resource type="PackedScene" uid="uid://4t4ad7dbaau5" path="res://scenes/entities/Enemies/suicide_enemy.tscn" id="8_gnsps"]
+[ext_resource type="PackedScene" uid="uid://dse4c8amop14o" path="res://scenes/UI/game_over.tscn" id="10_sqbmp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0g1n2"]
 texture = ExtResource("1_ed48k")
@@ -50,8 +51,10 @@ distance = -344.0
 [node name="UpgradeSpawner" parent="." instance=ExtResource("3_nlvjb")]
 position = Vector2(171, 0)
 
-[node name="Map" type="Node2D" parent="."]
+[node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("backgroundmusic")]
 script = ExtResource("2_iekdc")
+backgroundmusic = NodePath("../Background Music")
+game_over_scene = ExtResource("10_sqbmp")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Map"]
 tile_set = SubResource("TileSet_nlvjb")
@@ -92,6 +95,14 @@ shape = SubResource("WorldBoundaryShape2D_axxcs")
 
 [node name="Player" parent="." instance=ExtResource("1_rw1wj")]
 position = Vector2(184, 168)
-player_lv = 0
+player_lv = 2
+
+[node name="Background Music" type="AudioStreamPlayer" parent="."]
+pitch_scale = 1.6
+autoplay = true
+
+[node name="Fist Boss" parent="." instance=ExtResource("5_axxcs")]
+position = Vector2(168, 31)
 
 [connection signal="body_entered" from="Map/BossSpawnArea" to="Map/BossSpawnArea" method="_on_body_entered"]
+[connection signal="player_death" from="Player" to="Map" method="_on_player_player_death"]

@@ -7,6 +7,8 @@ extends Area2D
 
 var player_node: CharacterBody2D = null
 var count_turrets: int = 0
+const win_scene: PackedScene = preload("uid://bu3pknr246vw")
+
 
 func _ready() -> void:
 	player_node = get_tree().get_first_node_in_group("Player")
@@ -35,5 +37,7 @@ func _on_central_central_died() -> void:
 
 	var player = get_tree().get_first_node_in_group("Player")
 	player.victory_routine()
+	var win_text = win_scene.instantiate()
+	get_tree().root.add_child(win_text)
 
 	tween.tween_callback(queue_free)

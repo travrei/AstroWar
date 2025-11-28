@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 class_name Player
 
+#signals
+signal player_death
+
 #Imports
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var shooting_marker: Marker2D = $ShootingMarker
@@ -12,8 +15,8 @@ class_name Player
 @export var player_lv = PlayerLevel.Level.LV0
 @export var speed = 300.0
 @export_category("Nodes")
-@export var bullet_scene: PackedScene = PackedScene.new()
-@export var assistent_scene: PackedScene = PackedScene.new()
+@export var bullet_scene: PackedScene
+@export var assistent_scene: PackedScene
 @export_category("Sounds")
 @export var shooting_sound: AudioStreamPlayer2D
 @export var shooting_sound_lv3: AudioStreamPlayer2D
@@ -79,10 +82,11 @@ func death() -> void:
 	if !is_dead:
 		death_sound.play()
 	is_dead = true
+	set_deferred("collision_layer", 1)
+	emit_signal("player_death")
 
 func _on_sprite_animation_finished() -> void:
 	if is_dead:
-		print("Game OVER!")
 		death_sound.stop()
 
 func upgrade_up_one() -> void:
@@ -111,9 +115,9 @@ func victory_routine() -> void:
 	var center_pos = get_viewport_rect().size / 2
 	var t1 = create_tween()
 	t1.parallel().tween_property(self, "global_position:x", center_pos.x, 1.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	t1.parallel().tween_property(self, "global_position:y", 192, 1.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	t1.parallel().tween_property(self, "global_position:y", 150, 1.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
-	await t1.finished
+	await get_tree().create_timer(10).timeout
 
 	var t2 = create_tween()
 	t2.parallel().tween_property(self, "global_position:y", -200, 0.5).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
