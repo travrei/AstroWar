@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dsli8exvo67kg"]
+[gd_scene load_steps=18 format=3 uid="uid://dsli8exvo67kg"]
 
 [ext_resource type="PackedScene" uid="uid://c8xup5073kwqk" path="res://scenes/ambient/background.tscn" id="1_5agdd"]
 [ext_resource type="Texture2D" uid="uid://dkj1vgb3n5bp4" path="res://assets/TileSet/TileSet.png" id="1_ed48k"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://c64gsf56sr2nw" path="res://scripts/ambient/boss_spawn_area.gd" id="6_iekdc"]
 [ext_resource type="Script" uid="uid://d38jnydtnbpxq" path="res://scripts/ambient/suicide_spawn_area.gd" id="7_5agdd"]
 [ext_resource type="PackedScene" uid="uid://4t4ad7dbaau5" path="res://scenes/entities/Enemies/suicide_enemy.tscn" id="8_gnsps"]
+[ext_resource type="AudioStream" uid="uid://lfhtgb6r2uxs" path="res://assets/Audio/Music/E1M1 Bloo - Stricken Commission.ogg" id="8_sqbmp"]
 [ext_resource type="PackedScene" uid="uid://dse4c8amop14o" path="res://scenes/UI/game_over.tscn" id="10_sqbmp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0g1n2"]
@@ -33,6 +34,9 @@ texture = ExtResource("1_ed48k")
 
 [sub_resource type="TileSet" id="TileSet_nlvjb"]
 sources/1 = SubResource("TileSetAtlasSource_0g1n2")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqbmp"]
+size = Vector2(446, 20)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4kra6"]
 normal = Vector2(1, 0)
@@ -65,14 +69,17 @@ tile_set = SubResource("TileSet_nlvjb")
 
 [node name="Enemies" type="Node2D" parent="Map"]
 
-[node name="BossSpawnArea" type="Area2D" parent="Map" node_paths=PackedStringArray("map")]
+[node name="BossSpawnArea" type="Area2D" parent="Map" node_paths=PackedStringArray("map", "bg_music")]
 collision_mask = 2
 script = ExtResource("6_iekdc")
 boss_scene = ExtResource("5_axxcs")
 map = NodePath("..")
+bg_music = NodePath("../../Background Music")
+boss_msc = ExtResource("8_sqbmp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/BossSpawnArea"]
-position = Vector2(167, 0)
+position = Vector2(180, 0)
+shape = SubResource("RectangleShape2D_sqbmp")
 
 [node name="SuicideSpawnArea" type="Area2D" parent="Map"]
 collision_mask = 2
@@ -100,9 +107,6 @@ player_lv = 2
 [node name="Background Music" type="AudioStreamPlayer" parent="."]
 pitch_scale = 1.6
 autoplay = true
-
-[node name="Fist Boss" parent="." instance=ExtResource("5_axxcs")]
-position = Vector2(168, 31)
 
 [connection signal="body_entered" from="Map/BossSpawnArea" to="Map/BossSpawnArea" method="_on_body_entered"]
 [connection signal="player_death" from="Player" to="Map" method="_on_player_player_death"]

@@ -1821,3 +1821,4 @@ shape = SubResource("RectangleShape2D_hpolh")
 
 [node name="Background Music" parent="." index="5"]
 stream = ExtResource("7_hpolh")
+parameters/looping = false
