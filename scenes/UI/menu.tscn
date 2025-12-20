@@ -1,0 +1,102 @@
+[gd_scene load_steps=7 format=3 uid="uid://368oh7vd8o8f"]
+
+[ext_resource type="Script" uid="uid://cwumvgd4hebd" path="res://scripts/UI/menu.gd" id="1_ny0ke"]
+[ext_resource type="PackedScene" uid="uid://c8xup5073kwqk" path="res://scenes/ambient/background.tscn" id="1_u81ku"]
+[ext_resource type="Texture2D" uid="uid://blrduua6qxcjm" path="res://assets/Ui/logo.png" id="2_2tfbb"]
+[ext_resource type="PackedScene" uid="uid://ccmwfx8d8qe5b" path="res://scenes/lvs/lv_1.tscn" id="2_78n2u"]
+[ext_resource type="Theme" uid="uid://cyv3n15gtuavy" path="res://assets/Themes/mainTheme.tres" id="3_2un8v"]
+[ext_resource type="Script" uid="uid://bvuroo5woxi1l" path="res://scripts/UI/selection_menu.gd" id="5_ny0ke"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ny0ke")
+first_level = ExtResource("2_78n2u")
+
+[node name="Back" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="StarsBackground" parent="." instance=ExtResource("1_u81ku")]
+position = Vector2(351, 77)
+rotation = 1.5707964
+
+[node name="Logo Area" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 58.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Logo Area"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -18.791208
+offset_bottom = 18.791208
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2tfbb")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="Selection Menu" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 134.0
+offset_right = 1.0
+offset_bottom = 192.0
+grow_horizontal = 2
+theme = ExtResource("3_2un8v")
+color = Color(0, 0, 0, 1)
+script = ExtResource("5_ny0ke")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Selection Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -33.0
+offset_right = 23.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="StartB" type="Button" parent="Selection Menu/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+flat = true
+
+[node name="ExitB" type="Button" parent="Selection Menu/VBoxContainer"]
+layout_mode = 2
+text = "Exit
+"
+flat = true
+
+[node name="Arrow" type="Label" parent="Selection Menu"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 9.0
+offset_right = 122.0
+offset_bottom = 23.0
+text = ">"
+
+[connection signal="pressed" from="Selection Menu/VBoxContainer/StartB" to="." method="_on_start_b_pressed"]
+[connection signal="pressed" from="Selection Menu/VBoxContainer/ExitB" to="." method="_on_exit_b_pressed"]

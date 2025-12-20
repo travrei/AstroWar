@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cyv3n15gtuavy"]
+
+[ext_resource type="FontFile" uid="uid://b1i5vpmfn2fv2" path="res://assets/Fonts/dogicapixel.otf" id="1_opjs7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_opjs7"]
+
+[resource]
+default_font = ExtResource("1_opjs7")
+Button/colors/font_focus_color = Color(0.9502385, 0.9712818, 0.76462793, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_opjs7")

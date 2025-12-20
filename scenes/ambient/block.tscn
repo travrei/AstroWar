@@ -128,6 +128,7 @@ size = Vector2(16, 16)
 [node name="Block" type="Area2D" node_paths=PackedStringArray("explo_sound")]
 collision_mask = 16
 script = ExtResource("1_gr53s")
+score_giver = 20
 explo_sound = NodePath("Exploblock")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]

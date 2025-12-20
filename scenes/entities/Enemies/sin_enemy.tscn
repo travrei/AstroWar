@@ -114,6 +114,7 @@ collision_mask = 18
 script = ExtResource("1_wrcsw")
 animatesprite = NodePath("AnimatedSprite2D")
 explosion_fx = NodePath("Enemy")
+score_giver = 100
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_sq2sk")

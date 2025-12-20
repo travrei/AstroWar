@@ -134,6 +134,7 @@ bullet_scene = ExtResource("2_66j3v")
 detection_area = NodePath("Detect Player")
 animatedsprite = NodePath("AnimatedSprite2D")
 explosion_fx = NodePath("Enemy")
+score_giver = 50
 metadata/_custom_type_script = "uid://b7ykwp10iaujb"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

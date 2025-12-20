@@ -13,7 +13,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 	var boss = boss_scene.instantiate()
 	map.should_scroll = false
-	boss.global_position = Vector2(-20 , 0)
+	boss.global_position = Vector2(-20 , 16)
 	get_tree().root.add_child(boss)
 	bg_music.stream = boss_msc
 	bg_music.pitch_scale = 1.3

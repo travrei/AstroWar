@@ -11,7 +11,7 @@ func check_spawn(current_score: int) -> void:
 	while current_score >= next_spawn_target:
 		spawn_upgrade()
 
-		next_spawn_target += 20
+		next_spawn_target += next_spawn_target
 
 func spawn_upgrade() -> void:
 	var upgrade_obj = upgrade_scene.instantiate()

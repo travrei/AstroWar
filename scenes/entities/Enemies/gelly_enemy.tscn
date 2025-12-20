@@ -157,6 +157,7 @@ script = ExtResource("1_lgpdf")
 speed = 30
 animatesprite = NodePath("AnimatedSprite2D")
 explosion_fx = NodePath("Enemy")
+score_giver = 50
 metadata/_custom_type_script = "uid://b7ykwp10iaujb"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

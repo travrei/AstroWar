@@ -104,6 +104,7 @@ animations = [{
 [node name="PathFollow" type="PathFollow2D" node_paths=PackedStringArray("animationsprite", "explosion_fx")]
 scale = Vector2(2, 2)
 script = ExtResource("1_r10tr")
+score_giver = 100
 speed = 0.001
 animationsprite = NodePath("AnimatedSprite2D")
 explosion_fx = NodePath("Enemy")

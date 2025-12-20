@@ -54,6 +54,7 @@ distance = -344.0
 
 [node name="UpgradeSpawner" parent="." instance=ExtResource("3_nlvjb")]
 position = Vector2(171, 0)
+next_spawn_target = 1500
 
 [node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("backgroundmusic")]
 script = ExtResource("2_iekdc")

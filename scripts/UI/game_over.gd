@@ -15,6 +15,8 @@ func _ready() -> void:
 	QuitLabel.visible = true
 
 func _unhandled_input(event: InputEvent) -> void:
+	await get_tree().create_timer(2).timeout
+	
 	if event.is_action_pressed("Shoot"):
 		queue_free()
 		get_viewport().set_input_as_handled()
