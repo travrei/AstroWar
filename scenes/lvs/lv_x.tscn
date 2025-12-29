@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dsli8exvo67kg"]
+[gd_scene load_steps=19 format=3 uid="uid://dsli8exvo67kg"]
 
 [ext_resource type="PackedScene" uid="uid://c8xup5073kwqk" path="res://scenes/ambient/background.tscn" id="1_5agdd"]
 [ext_resource type="Texture2D" uid="uid://dkj1vgb3n5bp4" path="res://assets/TileSet/TileSet.png" id="1_ed48k"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://4t4ad7dbaau5" path="res://scenes/entities/Enemies/suicide_enemy.tscn" id="8_gnsps"]
 [ext_resource type="AudioStream" uid="uid://lfhtgb6r2uxs" path="res://assets/Audio/Music/E1M1 Bloo - Stricken Commission.ogg" id="8_sqbmp"]
 [ext_resource type="PackedScene" uid="uid://dse4c8amop14o" path="res://scenes/UI/game_over.tscn" id="10_sqbmp"]
+[ext_resource type="Script" uid="uid://c68isguuq12fw" path="res://scripts/UI/background_music.gd" id="12_q60ce"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0g1n2"]
 texture = ExtResource("1_ed48k")
@@ -35,8 +36,8 @@ texture = ExtResource("1_ed48k")
 [sub_resource type="TileSet" id="TileSet_nlvjb"]
 sources/1 = SubResource("TileSetAtlasSource_0g1n2")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqbmp"]
-size = Vector2(446, 20)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q60ce"]
+size = Vector2(387, 20)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4kra6"]
 normal = Vector2(1, 0)
@@ -54,7 +55,7 @@ distance = -344.0
 
 [node name="UpgradeSpawner" parent="." instance=ExtResource("3_nlvjb")]
 position = Vector2(171, 0)
-next_spawn_target = 1500
+next_spawn_target = 1000
 
 [node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("backgroundmusic")]
 script = ExtResource("2_iekdc")
@@ -71,6 +72,7 @@ tile_set = SubResource("TileSet_nlvjb")
 [node name="Enemies" type="Node2D" parent="Map"]
 
 [node name="BossSpawnArea" type="Area2D" parent="Map" node_paths=PackedStringArray("map", "bg_music")]
+collision_layer = 64
 collision_mask = 2
 script = ExtResource("6_iekdc")
 boss_scene = ExtResource("5_axxcs")
@@ -80,15 +82,17 @@ boss_msc = ExtResource("8_sqbmp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/BossSpawnArea"]
 position = Vector2(180, 0)
-shape = SubResource("RectangleShape2D_sqbmp")
 
 [node name="SuicideSpawnArea" type="Area2D" parent="Map"]
+collision_layer = 64
 collision_mask = 2
 script = ExtResource("7_5agdd")
+how_many_spawns = 4
 suicide_scene = ExtResource("8_gnsps")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/SuicideSpawnArea"]
-position = Vector2(167, 0)
+position = Vector2(177.5, 0)
+shape = SubResource("RectangleShape2D_q60ce")
 
 [node name="ScreenBorders" type="StaticBody2D" parent="."]
 
@@ -103,11 +107,13 @@ shape = SubResource("WorldBoundaryShape2D_axxcs")
 
 [node name="Player" parent="." instance=ExtResource("1_rw1wj")]
 position = Vector2(184, 168)
-player_lv = 2
+player_lv = 0
 
 [node name="Background Music" type="AudioStreamPlayer" parent="."]
 pitch_scale = 1.6
 autoplay = true
+script = ExtResource("12_q60ce")
 
 [connection signal="body_entered" from="Map/BossSpawnArea" to="Map/BossSpawnArea" method="_on_body_entered"]
 [connection signal="player_death" from="Player" to="Map" method="_on_player_player_death"]
+[connection signal="finished" from="Background Music" to="Background Music" method="_on_finished"]
