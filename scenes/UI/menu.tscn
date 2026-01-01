@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://368oh7vd8o8f"]
 
-[ext_resource type="Script" uid="uid://cwumvgd4hebd" path="res://scripts/UI/menu.gd" id="1_ny0ke"]
+[ext_resource type="Script" path="res://scripts/UI/menu.gd" id="1_ny0ke"]
 [ext_resource type="PackedScene" uid="uid://c8xup5073kwqk" path="res://scenes/ambient/background.tscn" id="1_u81ku"]
 [ext_resource type="Texture2D" uid="uid://blrduua6qxcjm" path="res://assets/Ui/logo.png" id="2_2tfbb"]
 [ext_resource type="PackedScene" uid="uid://ccmwfx8d8qe5b" path="res://scenes/lvs/lv_1.tscn" id="2_78n2u"]
 [ext_resource type="Theme" uid="uid://cyv3n15gtuavy" path="res://assets/Themes/mainTheme.tres" id="3_2un8v"]
-[ext_resource type="Script" uid="uid://bvuroo5woxi1l" path="res://scripts/UI/selection_menu.gd" id="5_ny0ke"]
+[ext_resource type="Script" path="res://scripts/UI/selection_menu.gd" id="5_ny0ke"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -28,7 +28,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="StarsBackground" parent="." instance=ExtResource("1_u81ku")]
 position = Vector2(351, 77)
-rotation = 1.5707964
+rotation = 1.5708
 
 [node name="Logo Area" type="ColorRect" parent="."]
 layout_mode = 1
@@ -44,8 +44,8 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -18.791208
-offset_bottom = 18.791208
+offset_top = -18.7912
+offset_bottom = 18.7912
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_2tfbb")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://bhykvsis8qd56"]
 
-[ext_resource type="Script" uid="uid://cu15t68uoif0l" path="res://scripts/ambient/block.gd" id="1_gr53s"]
+[ext_resource type="Script" path="res://scripts/ambient/block.gd" id="1_gr53s"]
 [ext_resource type="Texture2D" uid="uid://dkj1vgb3n5bp4" path="res://assets/TileSet/TileSet.png" id="2_qtmvq"]
 [ext_resource type="Texture2D" uid="uid://dpb6y3o0lgeos" path="res://assets/explosion.png" id="2_qy772"]
 [ext_resource type="AudioStream" uid="uid://ml6a30atl14p" path="res://assets/Audio/Fx/exploblock.wav" id="4_qy772"]
@@ -128,7 +128,7 @@ size = Vector2(16, 16)
 [node name="Block" type="Area2D" node_paths=PackedStringArray("explo_sound")]
 collision_mask = 16
 script = ExtResource("1_gr53s")
-score_giver = 20
+score_giver = 40
 explo_sound = NodePath("Exploblock")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]

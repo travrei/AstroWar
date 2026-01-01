@@ -10,7 +10,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_5flld"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 312, -136, 0, 0, 0, 0, 272, -72, 0, 0, 0, 0, 256, 16, 0, 0, 0, 0, 208, 72, 0, 0, 0, 0, 104, 88, 0, 0, 0, 0, 24, 88, 0, 0, 0, 0, -56, 112, 0, 0, 0, 0, -136, 32, 0, 0, 0, 0, 48, -72, 0, 0, 0, 0, 56, -296, 0, 0, 0, 0, 64, -408, 0, 0, 0, 0, 152, -504, 0, 0, 0, 0, 176, -624, 0, 0, 0, 0, 312, -664, 0, 0, 0, 0, 344, -408, 0, 0, 0, 0, 288, -336, 0, 0, 0, 0, 256, -224, 0, 0, 0, 0, 312, -136)
+"points": PackedVector2Array(0, 0, 0, 0, 312, -136, 0, 0, 0, 0, 272, -72, 0, 0, 0, 0, 256, 16, 0, 0, 0, 0, 208, 72, 0, 0, 0, 0, 104, 88, 0, 0, 0, 0, 24, 88, 0, 0, 0, 0, -56, 112, 0, 0, 0, 0, -136, 32, 0, 0, 0, 0, 48, -72, 0, 0, 0, 0, 56, -296, 0, 0, 0, 0, 64, -408, 0, 0, 0, 0, 152, -504, 0, 0, 0, 0, 324, -569, 0, 0, 0, 0, 312, -664, 0, 0, 0, 0, 344, -408, 0, 0, 0, 0, 288, -336, 0, 0, 0, 0, 256, -224, 0, 0, 0, 0, 312, -136)
 }
 point_count = 18
 
@@ -1319,36 +1319,36 @@ curve = SubResource("Curve2D_5flld")
 
 [node name="PathFollow" parent="Map/Paths/Path1" index="0" instance=ExtResource("2_tqw43")]
 position = Vector2(312, -136)
-rotation = 2.1293957
+rotation = 2.1294
 
 [node name="PathFollow2" parent="Map/Paths/Path1" index="1" instance=ExtResource("2_tqw43")]
-position = Vector2(303.41635, -149.48859)
-rotation = 1.0040671
-progress = 2116.7036
+position = Vector2(295.103, -162.553)
+rotation = 1.00407
+progress = 2116.7
 
 [node name="PathFollow3" parent="Map/Paths/Path1" index="2" instance=ExtResource("2_tqw43")]
-position = Vector2(294.82532, -162.98874)
-rotation = 1.0040671
+position = Vector2(286.503, -176.067)
+rotation = 1.00407
 progress = 2100.7
 
 [node name="PathFollow4" parent="Map/Paths/Path1" index="3" instance=ExtResource("2_tqw43")]
-position = Vector2(286.22897, -176.49736)
-rotation = 1.0040671
+position = Vector2(277.907, -189.574)
+rotation = 1.00407
 progress = 2084.7
 
 [node name="PathFollow5" parent="Map/Paths/Path1" index="4" instance=ExtResource("2_tqw43")]
-position = Vector2(277.63165, -190.00743)
-rotation = 1.0040671
+position = Vector2(269.315, -203.076)
+rotation = 1.00407
 progress = 2068.7
 
 [node name="PathFollow6" parent="Map/Paths/Path1" index="5" instance=ExtResource("2_tqw43")]
-position = Vector2(269.04626, -203.49875)
-rotation = 1.0040671
+position = Vector2(260.711, -216.597)
+rotation = 1.00407
 progress = 2052.7
 
 [node name="PathFollow7" parent="Map/Paths/Path1" index="6" instance=ExtResource("2_tqw43")]
-position = Vector2(260.43103, -217.03696)
-rotation = 1.0040671
+position = Vector2(257.97, -230.895)
+rotation = 1.8491
 progress = 2036.7
 
 [node name="Path2" type="Path2D" parent="Map/Paths" index="1"]
@@ -1357,66 +1357,66 @@ curve = SubResource("Curve2D_5flld")
 
 [node name="PathFollow" parent="Map/Paths/Path2" index="0" instance=ExtResource("2_tqw43")]
 position = Vector2(312, -136)
-rotation = 2.1293957
+rotation = 2.1294
 
 [node name="PathFollow2" parent="Map/Paths/Path2" index="1" instance=ExtResource("2_tqw43")]
-position = Vector2(303.41635, -149.48859)
-rotation = 1.0040671
-progress = 2116.7036
+position = Vector2(295.103, -162.553)
+rotation = 1.00407
+progress = 2116.7
 
 [node name="PathFollow3" parent="Map/Paths/Path2" index="2" instance=ExtResource("2_tqw43")]
-position = Vector2(294.82532, -162.98874)
-rotation = 1.0040671
+position = Vector2(286.503, -176.067)
+rotation = 1.00407
 progress = 2100.7
 
 [node name="PathFollow4" parent="Map/Paths/Path2" index="3" instance=ExtResource("2_tqw43")]
-position = Vector2(286.22897, -176.49736)
-rotation = 1.0040671
+position = Vector2(277.907, -189.574)
+rotation = 1.00407
 progress = 2084.7
 
 [node name="PathFollow5" parent="Map/Paths/Path2" index="4" instance=ExtResource("2_tqw43")]
-position = Vector2(277.63165, -190.00743)
-rotation = 1.0040671
+position = Vector2(269.315, -203.076)
+rotation = 1.00407
 progress = 2068.7
 
 [node name="Enemies" parent="Map" index="3"]
 metadata/_edit_lock_ = true
 
 [node name="SinEnemy" parent="Map/Enemies" index="0" instance=ExtResource("4_5flld")]
-position = Vector2(264, -1360)
+position = Vector2(258, -1234)
 
 [node name="SinEnemy2" parent="Map/Enemies" index="1" instance=ExtResource("4_5flld")]
-position = Vector2(72, -1360)
+position = Vector2(66, -1234)
 
 [node name="SinEnemy3" parent="Map/Enemies" index="2" instance=ExtResource("4_5flld")]
-position = Vector2(264, -1440)
+position = Vector2(258, -1314)
 
 [node name="SinEnemy4" parent="Map/Enemies" index="3" instance=ExtResource("4_5flld")]
-position = Vector2(72, -1440)
+position = Vector2(66, -1314)
 
 [node name="SinEnemy5" parent="Map/Enemies" index="4" instance=ExtResource("4_5flld")]
-position = Vector2(264, -1504)
+position = Vector2(258, -1378)
 
 [node name="SinEnemy6" parent="Map/Enemies" index="5" instance=ExtResource("4_5flld")]
-position = Vector2(72, -1504)
+position = Vector2(66, -1378)
 
 [node name="SinEnemy7" parent="Map/Enemies" index="6" instance=ExtResource("4_5flld")]
-position = Vector2(264, -1584)
+position = Vector2(258, -1458)
 
 [node name="SinEnemy9" parent="Map/Enemies" index="7" instance=ExtResource("4_5flld")]
-position = Vector2(168, -1368)
+position = Vector2(162, -1242)
 
 [node name="SinEnemy10" parent="Map/Enemies" index="8" instance=ExtResource("4_5flld")]
-position = Vector2(168, -1448)
+position = Vector2(162, -1322)
 
 [node name="SinEnemy11" parent="Map/Enemies" index="9" instance=ExtResource("4_5flld")]
-position = Vector2(168, -1512)
+position = Vector2(162, -1386)
 
 [node name="SinEnemy12" parent="Map/Enemies" index="10" instance=ExtResource("4_5flld")]
-position = Vector2(168, -1592)
+position = Vector2(162, -1466)
 
 [node name="SinEnemy8" parent="Map/Enemies" index="11" instance=ExtResource("4_5flld")]
-position = Vector2(72, -1584)
+position = Vector2(66, -1458)
 
 [node name="SinEnemy13" parent="Map/Enemies" index="12" instance=ExtResource("4_5flld")]
 position = Vector2(264, -3136)
@@ -1752,61 +1752,61 @@ position = Vector2(320, -712)
 position = Vector2(336, -712)
 
 [node name="GellyEnemy96" parent="Map/Enemies" index="123" instance=ExtResource("6_0lr5v")]
-position = Vector2(8, -672)
+position = Vector2(14, -458)
 
 [node name="GellyEnemy97" parent="Map/Enemies" index="124" instance=ExtResource("6_0lr5v")]
-position = Vector2(24, -672)
+position = Vector2(30, -458)
 
 [node name="GellyEnemy98" parent="Map/Enemies" index="125" instance=ExtResource("6_0lr5v")]
-position = Vector2(40, -672)
+position = Vector2(46, -458)
 
 [node name="GellyEnemy99" parent="Map/Enemies" index="126" instance=ExtResource("6_0lr5v")]
-position = Vector2(56, -672)
+position = Vector2(62, -458)
 
 [node name="GellyEnemy100" parent="Map/Enemies" index="127" instance=ExtResource("6_0lr5v")]
-position = Vector2(72, -672)
+position = Vector2(78, -458)
 
 [node name="GellyEnemy101" parent="Map/Enemies" index="128" instance=ExtResource("6_0lr5v")]
-position = Vector2(88, -672)
+position = Vector2(94, -458)
 
 [node name="GellyEnemy102" parent="Map/Enemies" index="129" instance=ExtResource("6_0lr5v")]
-position = Vector2(120, -672)
+position = Vector2(126, -458)
 
 [node name="GellyEnemy103" parent="Map/Enemies" index="130" instance=ExtResource("6_0lr5v")]
-position = Vector2(136, -672)
+position = Vector2(142, -458)
 
 [node name="GellyEnemy104" parent="Map/Enemies" index="131" instance=ExtResource("6_0lr5v")]
-position = Vector2(152, -672)
+position = Vector2(158, -458)
 
 [node name="GellyEnemy105" parent="Map/Enemies" index="132" instance=ExtResource("6_0lr5v")]
-position = Vector2(168, -672)
+position = Vector2(174, -458)
 
 [node name="GellyEnemy106" parent="Map/Enemies" index="133" instance=ExtResource("6_0lr5v")]
-position = Vector2(184, -672)
+position = Vector2(190, -458)
 
 [node name="GellyEnemy107" parent="Map/Enemies" index="134" instance=ExtResource("6_0lr5v")]
-position = Vector2(200, -672)
+position = Vector2(206, -458)
 
 [node name="GellyEnemy108" parent="Map/Enemies" index="135" instance=ExtResource("6_0lr5v")]
-position = Vector2(216, -672)
+position = Vector2(222, -458)
 
 [node name="GellyEnemy109" parent="Map/Enemies" index="136" instance=ExtResource("6_0lr5v")]
-position = Vector2(232, -672)
+position = Vector2(238, -458)
 
 [node name="GellyEnemy110" parent="Map/Enemies" index="137" instance=ExtResource("6_0lr5v")]
-position = Vector2(248, -672)
+position = Vector2(254, -458)
 
 [node name="GellyEnemy111" parent="Map/Enemies" index="138" instance=ExtResource("6_0lr5v")]
-position = Vector2(280, -672)
+position = Vector2(286, -458)
 
 [node name="GellyEnemy112" parent="Map/Enemies" index="139" instance=ExtResource("6_0lr5v")]
-position = Vector2(296, -672)
+position = Vector2(302, -458)
 
 [node name="GellyEnemy113" parent="Map/Enemies" index="140" instance=ExtResource("6_0lr5v")]
-position = Vector2(312, -672)
+position = Vector2(318, -458)
 
 [node name="GellyEnemy114" parent="Map/Enemies" index="141" instance=ExtResource("6_0lr5v")]
-position = Vector2(328, -672)
+position = Vector2(334, -458)
 
 [node name="CollisionShape2D" parent="Map/BossSpawnArea" index="0"]
 position = Vector2(160, -4208)
